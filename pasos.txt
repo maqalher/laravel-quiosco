@@ -1,0 +1,69 @@
+
+crear proyecto en laravel
+ composer create-project laravel/laravel laravel-quiosco
+
+
+crear bd quiosco
+
+Crear Modelo Categoria
+    php artisan make:model Categoria --migration --controller
+
+crear un seeder
+    php artisan make:seeder CategoriaSeeder
+
+    en DatabaseSeeder 
+        $this->call(CategoriaSeeder::class);
+            php artisan db:seed
+
+Con Api Resource puedes personalizar tus respuestas para solo incluir la infomacion que requieres
+    php artisan make:resource CategoriaCollection
+    php artisan make:resource CategoriaResource
+
+Crear Modelo Producto
+    php artisan make:model Producto --resource --api --migration
+
+    php artisan migrate
+
+    php artisan make:seeder ProductoSeeder
+
+DataSeeder.php
+    $this->call(CategoriaSeeder::class);
+        $this->call(ProductoSeeder::class);
+
+        php artisan migrate:refresh --seed
+
+Crear Resource Productos 
+    php artisan make:resource ProductoCollection
+    php artisan make:resource ProductoResource
+
+Crear AuthController
+    php artisan make:controller AuthController
+
+
+crear Request
+    php artisan make:request RegistroRequest
+
+
+Habilitar Cors
+    cors.php
+     'supports_credentials' => false,  =>  'supports_credentials' => true
+
+
+crear Login
+    php artisan make:request LoginRequest
+
+crear modelo Pedido
+    php artisan make:model Pedido --migration --api --resource
+    php artisan migrate
+
+crear tabla pivote PedidoProducto
+    php artisan make:model PedidoProducto --migration
+    php artisan migrate
+
+
+agregar columna a la tabla de usuarios
+    php artisan make:migration add_admin_column_to_users_table
+    php artisan migrate
+
+crear PedidoCollection
+    php artisan make:resource PedidoCollection
